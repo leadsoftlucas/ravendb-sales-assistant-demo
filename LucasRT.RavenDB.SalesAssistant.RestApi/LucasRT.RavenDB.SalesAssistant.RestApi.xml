@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LucasRT.RavenDB.SalesAssistant.RestApi</name>
+    </assembly>
+    <members>
+        <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Configurations.SwaggerConfiguration">
+            <summary>
+            Provides extension methods for configuring Swagger in an ASP.NET Core application.
+            </summary>
+            <remarks>This class contains methods to integrate Swagger documentation generation into the
+            application's service collection. It enables features such as XML comments inclusion, custom schema IDs, and
+            annotations.</remarks>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Configurations.SwaggerConfiguration.AddSwaggerConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures Swagger services for the application, enabling API documentation generation.
+            </summary>
+            <remarks>This method adds Swagger generation capabilities to the application's service
+            collection. It registers the Swagger documentation with metadata such as title, version, description, and
+            contact information. Additionally, it includes XML comments for API documentation, enables annotations, and
+            customizes schema IDs.</remarks>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to which Swagger services will be added.</param>
+        </member>
+    </members>
+</doc>
