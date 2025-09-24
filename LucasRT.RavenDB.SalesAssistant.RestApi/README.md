@@ -1,7 +1,7 @@
-## ravendb-sales-assistant-demo
+# ravendb-sales-assistant-demo
 This repository demonstrates how to use RavenDB and AI Features as a sales assistant utility.
 
-### Before you start
+## Before you start
 
 On Test Unit layer, you'll find two `.csv` files that you can use to import sample data into your RavenDB instance. If you want to use your own data, keep the headers in the same format.
 
@@ -10,7 +10,7 @@ Then you can import the data from the CSV files into your RavenDB instance from 
 
 Then, when you get the paginated Messages on message resource, you'll be able to see what GenAI has generated as massage to your leads. It's on HTML format, so get the endpoint and load it directly on your browser.
 
-### What's about to come
+## What's about to come
 
 I'll insert the GetAI configurations from the Clients soon. Then, the application will be able to be used without a preconfigured database dump, that I cannot provide yet.
 

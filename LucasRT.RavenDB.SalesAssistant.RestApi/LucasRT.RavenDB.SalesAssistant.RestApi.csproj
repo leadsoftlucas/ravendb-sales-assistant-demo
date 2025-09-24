@@ -10,10 +10,12 @@
 
   <ItemGroup>
     <None Remove="Certificates\LucasSales.pfx" />
+    <None Remove="README.md" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Certificates\LucasSales.pfx" />
+    <EmbeddedResource Include="README.md" />
   </ItemGroup>
 
   <ItemGroup>
