@@ -8,7 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Files\List1.csv" />
+    <None Remove="Files\List2.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Certificates\LucasSales.pfx" />
+    <EmbeddedResource Include="Files\List1.csv" />
+    <EmbeddedResource Include="Files\List2.csv" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,10 +39,6 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Files\" />
   </ItemGroup>
 
 </Project>
