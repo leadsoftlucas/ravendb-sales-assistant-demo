@@ -8,12 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Files\RavenDB_TDC_SP_2025_Detailed_Scanner_List.csv" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Certificates\LucasSales.pfx" />
-    <EmbeddedResource Include="Files\RavenDB_TDC_SP_2025_Detailed_Scanner_List.csv" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +16,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="LeadSoft.Common.GlobalDomain" Version="9.2.23" />
+    <PackageReference Include="LeadSoft.Common.GlobalDomain" Version="9.2.25" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="RavenDB.Client" Version="7.1.2" />
     <PackageReference Include="xunit" Version="2.9.3" />
@@ -37,6 +32,10 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Files\" />
   </ItemGroup>
 
 </Project>

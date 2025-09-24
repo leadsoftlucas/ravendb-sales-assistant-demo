@@ -1,5 +1,7 @@
 ﻿using LeadSoft.Common.Library.Extensions;
+using Newtonsoft.Json;
 using Raven.Client.Documents;
+using Raven.Client.Json.Serialization.NewtonsoftJson;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 
@@ -21,7 +23,14 @@ namespace LucasRT.RavenDB.SalesAssistant.Tests.Fixtures.Databases
             {
                 Urls = ["https://a.ravenchildai.development.run/"],
                 Database = "SalesAssistant",
-                Certificate = RavenDB_Development
+                Certificate = RavenDB_Development,
+                Conventions =
+                {
+                    Serialization   = new NewtonsoftJsonSerializationConventions
+                    {
+                        CustomizeJsonSerializer = serializer => serializer.NullValueHandling = NullValueHandling.Ignore,
+                    }
+                }
             }.Initialize();
         }
 

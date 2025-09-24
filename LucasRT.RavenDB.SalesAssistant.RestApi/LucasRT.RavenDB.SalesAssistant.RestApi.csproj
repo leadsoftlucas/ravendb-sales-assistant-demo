@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LeadSoft.Common.GlobalDomain" Version="9.2.23" />
+    <PackageReference Include="LeadSoft.Common.GlobalDomain" Version="9.2.25" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
     <PackageReference Include="RavenDB.Client" Version="7.1.2" />

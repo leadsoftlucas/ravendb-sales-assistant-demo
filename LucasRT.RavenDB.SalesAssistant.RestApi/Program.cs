@@ -1,4 +1,5 @@
 using LucasRT.RavenDB.SalesAssistant.RestApi.Application.Services.Leads;
+using LucasRT.RavenDB.SalesAssistant.RestApi.Application.Services.Messages;
 using LucasRT.RavenDB.SalesAssistant.RestApi.Configurations;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
@@ -15,6 +16,7 @@ builder.Services.AddResponseCompression();
 builder.Services.AddControllersConfig();
 builder.Services.AddSwaggerConfig();
 builder.Services.AddScoped<ILeadService, LeadService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
 
 WebApplication app = builder.Build();
 

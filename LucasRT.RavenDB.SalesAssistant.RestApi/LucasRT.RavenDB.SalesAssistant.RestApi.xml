@@ -22,5 +22,66 @@
             customizes schema IDs.</remarks>
             <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to which Swagger services will be added.</param>
         </member>
+        <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.LeadsController">
+            <summary>
+            Provides endpoints for managing and importing lead data.
+            </summary>
+            <remarks>The <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.LeadsController"/> class handles HTTP requests related to lead data
+            operations, including importing leads from CSV files. It supports multipart form-data uploads and ensures that
+            the uploaded file meets specific criteria before processing.</remarks>
+            <param name="leads"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.LeadsController.#ctor(LucasRT.RavenDB.SalesAssistant.RestApi.Application.Services.Leads.ILeadService,Microsoft.Extensions.Logging.ILogger{LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.LeadsController})">
+            <summary>
+            Provides endpoints for managing and importing lead data.
+            </summary>
+            <remarks>The <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.LeadsController"/> class handles HTTP requests related to lead data
+            operations, including importing leads from CSV files. It supports multipart form-data uploads and ensures that
+            the uploaded file meets specific criteria before processing.</remarks>
+            <param name="leads"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.LeadsController.PostLeadsAsync(Microsoft.AspNetCore.Http.IFormFile,LeadSoft.Common.Library.Enumerators.Enums.CultureName,LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.LeadOrigin)">
+            <summary>
+            Processes and imports lead data from a CSV file asynchronously.
+            </summary>
+            <remarks>This method supports multipart form-data content type and expects exactly one file to
+            be uploaded. It returns a 400 Bad Request if more than one file is provided, a 411 Length Required if the
+            file is empty, and a 422 Unprocessable Entity if the file cannot be processed.</remarks>
+            <param name="csvFile">The CSV file containing lead data to be imported. Must be a non-empty file with a .csv extension.</param>
+            <param name="leadOrigin">The origin of the leads being imported. Defaults to <see cref="F:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.LeadOrigin.Other"/> if not specified.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/> containing a <see cref="T:LeadSoft.Common.GlobalDomain.DTOs.DTOBoolResponse"/> indicating the success of the
+            import operation.</returns>
+        </member>
+        <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.MessagesController">
+            <summary>
+            Provides endpoints for managing messages.
+            </summary>
+            <remarks>This controller handles HTTP requests related to message operations, such as creating new
+            messages.</remarks>
+            <param name="messages"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.MessagesController.#ctor(LucasRT.RavenDB.SalesAssistant.RestApi.Application.Services.Messages.IMessageService,Microsoft.Extensions.Logging.ILogger{LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.MessagesController})">
+            <summary>
+            Provides endpoints for managing messages.
+            </summary>
+            <remarks>This controller handles HTTP requests related to message operations, such as creating new
+            messages.</remarks>
+            <param name="messages"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse.ToHtml(System.Collections.Generic.IEnumerable{LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse},LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse.HtmlRenderOptions)">
+            <summary>
+            Converte uma lista de DtoMessageResponse em um HTML completo (doctype+head+body).
+            </summary>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse.ToHtml(LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse,LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse.HtmlRenderOptions)">
+            <summary>
+            Converte UM item apenas em um HTML completo. Útil para endpoints de detalhe.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse.EncodeParagraphs(System.String,System.Text.Encodings.Web.HtmlEncoder)" -->
     </members>
 </doc>

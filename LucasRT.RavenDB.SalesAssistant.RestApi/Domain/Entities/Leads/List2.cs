@@ -5,7 +5,7 @@ using static LeadSoft.Common.Library.Enumerators.Enums;
 
 namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
 {
-    public partial class Leadcsv
+    public partial class List2
     {
         public string Name { get; set; } = string.Empty;
         public string DocumentNumber { get; set; } = string.Empty;
@@ -20,7 +20,7 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
         public string OtherEmails { get; set; } = string.Empty;
         public string OtherEmailsTypes { get; set; } = string.Empty;
 
-        public static IEnumerable<Leadcsv> FromCsv(Stream aStream)
+        public static IEnumerable<List2> FromCsv(Stream aStream)
         {
             IList<string[]> lines = Util.ReadCSVStreamToTheEnd(aStream, true, string.Empty, false);
 
@@ -42,13 +42,14 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
             }
         }
 
-        public static implicit operator Lead(Leadcsv leadCsv)
+        public static implicit operator Lead(List2 leadCsv)
         {
             if (leadCsv is null)
                 return null;
 
             Lead lead = new()
             {
+                Origin = LeadOrigin.List2,
                 Name = leadCsv.Name.ToTitleCase(),
                 DocumentNumber = leadCsv.DocumentNumber.FormatCPF(),
                 BirthDate = DateTime.TryParse(leadCsv.BirthDate, out DateTime birthDate) ? birthDate : new DateTime(1900, 1, 1),
@@ -114,10 +115,10 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
             return lead;
         }
 
-        public static IEnumerable<Leadcsv> ToLeads(Stream stream)
+        public static IEnumerable<List2> ToLeads(Stream stream)
         {
-            foreach (Leadcsv leadcsv in Leadcsv.FromCsv(stream))
-                yield return leadcsv;
+            foreach (List2 list2 in FromCsv(stream))
+                yield return list2;
         }
     }
 }
