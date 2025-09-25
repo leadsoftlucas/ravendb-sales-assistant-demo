@@ -7,7 +7,7 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages
     {
         public static DtoMessage GetPersonal(AIEmailSuggestions emailSuggestion)
         {
-            if (emailSuggestion.PersonalRecipients.IsNothing())
+            if (emailSuggestion is null || emailSuggestion.PersonalRecipients.IsNothing())
                 return null;
 
             return new()
@@ -20,7 +20,7 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages
 
         public static DtoMessage GetProfessional(AIEmailSuggestions emailSuggestion)
         {
-            if (emailSuggestion.ProfessionalRecipients.IsNothing())
+            if (emailSuggestion is null || emailSuggestion.ProfessionalRecipients.IsNothing())
                 return null;
 
             return new()

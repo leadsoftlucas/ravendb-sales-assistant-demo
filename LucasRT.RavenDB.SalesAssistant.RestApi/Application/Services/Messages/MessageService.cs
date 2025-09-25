@@ -20,7 +20,7 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Application.Services.Messages
 
             IList<Message> messages = await session.Query<Message>()
                                                    .Include(m => m.LeadId)
-                                                   .Where(m => m.Origin == leadOrigin)
+                                                   .Where(m => m.Origin == leadOrigin && m.AIEmailSuggestions != null)
                                                    .OrderBy(m => m.AiKnowledge.FriendlyName)
                                                    .Skip(dtoPage.CurrentPage * dtoPage.PageSize)
                                                    .Take(dtoPage.PageSize)
