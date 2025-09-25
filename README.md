@@ -7,6 +7,28 @@ There are two types of Lists based on Leads sources. One is more professional or
 
 On Test Unit layer, you'll find two `.csv` files that you can use to import sample data into your RavenDB instance. If you want to use your own data, feed it but keep the headers in the same format as below:
 
+The list type is defined by the enum below, that associates the Lead List import to the Template List destination:
+
+```csharp
+namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
+{
+    public static partial class Enums
+    {
+        public enum LeadOrigin
+        {
+            [Description("List 1 - Professional")]
+            List1 = 1,
+            [Description("List 2 - Personal")]
+            List2 = 2,
+            [Description("Other")]
+            Other = 99
+        }
+    }
+}
+```
+
+It defines the expected headers on the CSV files as below:
+
 #### List 1 - Professional
 |Company                        | Name                        | E-mail Address            |
 |-------------------------------|-----------------------------|---------------------------|
@@ -29,10 +51,11 @@ Then, set the connection string on `appsettings.json` file:
       "https://a.yourclusterhost.development.run/"
     ],
     "DatabaseName": "SalesAssistant"
-    //"ResourceName": "YourEmbeddedResourceCertificateNameIfYouSetupSecureDatabase"
   }
 }
 ```
+
+> If you are using a secure database, you'll need to provide the certificate password on the environment variable `RAVENDB_PASSWORD` and setup your certificate path on `RavenDBConfiguration.cs` file.
 
 Setup your `launchsettings.json` file with the necessary environment variables as below. Note that you'll need your own `OpenAI API Token` to use this service:
 ```json
