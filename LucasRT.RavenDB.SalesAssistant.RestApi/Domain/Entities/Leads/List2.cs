@@ -1,6 +1,7 @@
 ﻿using LeadSoft.Common.GlobalDomain.Entities;
 using LeadSoft.Common.Library;
 using LeadSoft.Common.Library.Extensions;
+using static LeadSoft.Common.GlobalDomain.Entities.Enums;
 using static LeadSoft.Common.Library.Enumerators.Enums;
 
 namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
@@ -65,7 +66,7 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
                 foreach (UF uf in leadCsv.State.Split(",").Select(uf => GetByValueString<UF>(uf)))
                     lead.State.Add(uf);
 
-            lead.Emails.SetPrimary(new(Enums.ContactType.Personal, leadCsv.Email));
+            lead.Emails.SetPrimary(new(ContactType.Personal, leadCsv.Email));
 
             if (leadCsv.OtherEmails.IsSomething())
             {
@@ -74,14 +75,14 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
                 {
                     string emailType = leadCsv.OtherEmailsTypes.Split(",").ElementAtOrDefault(idx)?.Trim().ToUpper() ?? "PERSONAL";
 
-                    Enums.ContactType contactType = emailType.ToUpper() switch
+                    ContactType contactType = emailType.ToUpper() switch
                     {
-                        "WORK" => Enums.ContactType.Professional,
-                        "MOBILE" => Enums.ContactType.Mobile,
-                        "HOME" => Enums.ContactType.Home,
-                        "PERSONAL" => Enums.ContactType.Personal,
-                        "CORPORATE" => Enums.ContactType.Commercial,
-                        _ => Enums.ContactType.Other
+                        "WORK" => ContactType.Professional,
+                        "MOBILE" => ContactType.Mobile,
+                        "HOME" => ContactType.Home,
+                        "PERSONAL" => ContactType.Personal,
+                        "CORPORATE" => ContactType.Commercial,
+                        _ => ContactType.Other
                     };
 
                     if (email.IsSomething())
@@ -98,12 +99,12 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
                 {
                     string phoneType = leadCsv.PhoneTypes.Split(",").ElementAtOrDefault(idx)?.Trim().ToUpper() ?? "Personal";
 
-                    Enums.ContactType contactType = phoneType.ToUpper() switch
+                    ContactType contactType = phoneType.ToUpper() switch
                     {
-                        "WORK" => Enums.ContactType.Professional,
-                        "MOBILE" => Enums.ContactType.Mobile,
-                        "HOME" => Enums.ContactType.Home,
-                        _ => Enums.ContactType.Other
+                        "WORK" => ContactType.Professional,
+                        "MOBILE" => ContactType.Mobile,
+                        "HOME" => ContactType.Home,
+                        _ => ContactType.Other
                     };
 
                     if (phone.IsSomething())

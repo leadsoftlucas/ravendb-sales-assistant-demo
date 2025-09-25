@@ -1,6 +1,6 @@
-﻿using LeadSoft.Common.GlobalDomain.Entities;
-using LeadSoft.Common.Library;
+﻿using LeadSoft.Common.Library;
 using LeadSoft.Common.Library.Extensions;
+using static LeadSoft.Common.GlobalDomain.Entities.Enums;
 
 namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
 {
@@ -37,7 +37,7 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
                 Company = leadSoft.Company.ToTitleCase(),
             };
 
-            lead.Emails.SetPrimary(new(Enums.ContactType.Personal, leadSoft.Email));
+            lead.Emails.SetPrimary(new(ContactType.Personal, leadSoft.Email));
 
             return lead;
         }

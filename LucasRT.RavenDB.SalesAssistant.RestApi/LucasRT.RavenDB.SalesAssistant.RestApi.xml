@@ -124,11 +124,13 @@
         </member>
         <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.MessagesController.GetMessagesAsync(LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.LeadOrigin,LeadSoft.Common.GlobalDomain.DTOs.DTOPagedRequest)">
             <summary>
-            Retrieves a list of messages based on the specified lead origin and pagination parameters, and returns them
-            as an HTML string.
+            Retrieves a list of messages based on the specified lead origin and pagination parameters, and returns them as an HTML string.
             </summary>
-            <remarks>The method returns an HTML content type response. Ensure that the pagination
-            parameters are valid to avoid exceptions.</remarks>
+            <remarks>
+            The method returns an HTML content type response. Ensure that the pagination parameters are valid to avoid exceptions.
+            
+            I recommend you to call this method directly from a web browser or a tool that can render HTML content, as it returns an HTML string.
+            </remarks>
             <param name="leadOrigin">The origin of the leads for which messages are to be retrieved. This parameter determines the source context
             of the messages.</param>
             <param name="dtoPage">The pagination parameters that specify the page number and size for the message retrieval. This helps in
@@ -259,6 +261,31 @@
             collection named after the plural form of the <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message"/> class.</remarks>
             <returns>An <see cref="T:Raven.Client.Documents.Indexes.IndexDefinition"/> object configured to index lead documents with template associations, using
             Lucene as the search engine.</returns>
+        </member>
+        <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Enums.LeadOrigin">
+            <summary>
+            Specifies the origin of a lead in the system.
+            </summary>
+            <remarks>The <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Enums.LeadOrigin"/> enumeration is used to categorize the source from which
+            a lead was acquired. It includes predefined sources such as <see cref="F:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Enums.LeadOrigin.List1"/> and <see cref="F:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Enums.LeadOrigin.List2"/>, as
+            well as an <see cref="F:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Enums.LeadOrigin.Other"/> option for unspecified sources.</remarks>
+        </member>
+        <member name="F:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Enums.LeadOrigin.List1">
+            <summary>
+            List 1 - Professional
+            </summary>
+        </member>
+        <member name="F:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Enums.LeadOrigin.List2">
+            <summary>
+            List 2 - Personal
+            </summary>
+        </member>
+        <member name="F:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Enums.LeadOrigin.Other">
+            <summary>
+            Represents a value that is not categorized under any specific predefined category.
+            </summary>
+            <remarks>This enumeration value is used to indicate a category that does not fit into
+            the standard set of categories.</remarks>
         </member>
         <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions">
             <summary>
