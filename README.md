@@ -26,7 +26,7 @@ Then, set the connection string on `appsettings.json` file:
 {
   "RavenSettings": {
     "Urls": [
-      "https://a.ravenchildai.development.run/"
+      "https://a.yourclusterhost.development.run/"
     ],
     "DatabaseName": "SalesAssistant"
     //"ResourceName": "YourEmbeddedResourceCertificateNameIfYouSetupSecureDatabase"
@@ -46,7 +46,7 @@ Setup your `launchsettings.json` file with the necessary environment variables a
       "applicationUrl": "https://localhost:7062;http://localhost:5208",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "RAVENDB_PASSWORD": "LucasHR",
+        "RAVENDB_PASSWORD": "YourCertificatePasswordIfYouSetupSecureDatabase",
         "OPEN_AI_API_KEY": "PlaceYourOpenAIApiKeyHere",
         "OPEN_AI_API_URL": "https://api.openai.com/v1",
         "OPEN_AI_GENERATIVE_MODEL": "gpt-5-mini",
