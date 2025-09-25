@@ -5,6 +5,7 @@ using LeadSoft.Common.Library.Extensions.Attributes;
 using LucasRT.RavenDB.SalesAssistant.RestApi.Application.Services.Leads;
 using LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 using static LeadSoft.Common.Library.Enumerators.Enums;
 
@@ -30,9 +31,11 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Controllers
         /// be uploaded. It returns a 400 Bad Request if more than one file is provided, a 411 Length Required if the
         /// file is empty, and a 422 Unprocessable Entity if the file cannot be processed.</remarks>
         /// <param name="csvFile">The CSV file containing lead data to be imported. Must be a non-empty file with a .csv extension.</param>
+        /// <param name="cultureName">The culture name indicating the locale of the lead data. Defaults to <see cref="CultureName.pt_BR"/> if not specified.</param>
         /// <param name="leadOrigin">The origin of the leads being imported. Defaults to <see cref="LeadOrigin.Other"/> if not specified.</param>
         /// <returns>An <see cref="ActionResult{T}"/> containing a <see cref="DTOBoolResponse"/> indicating the success of the
         /// import operation.</returns>
+        [SwaggerOperation(Summary = "Imports lead data from a CSV file.", Description = "Processes and imports lead data from a provided CSV file.")]
         [HttpPost("", Name = nameof(PostLeadsAsync))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status411LengthRequired)]

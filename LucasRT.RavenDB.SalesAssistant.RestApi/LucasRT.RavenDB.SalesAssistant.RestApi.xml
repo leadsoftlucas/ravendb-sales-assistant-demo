@@ -99,6 +99,7 @@
             be uploaded. It returns a 400 Bad Request if more than one file is provided, a 411 Length Required if the
             file is empty, and a 422 Unprocessable Entity if the file cannot be processed.</remarks>
             <param name="csvFile">The CSV file containing lead data to be imported. Must be a non-empty file with a .csv extension.</param>
+            <param name="cultureName">The culture name indicating the locale of the lead data. Defaults to <see cref="F:LeadSoft.Common.Library.Enumerators.Enums.CultureName.pt_BR"/> if not specified.</param>
             <param name="leadOrigin">The origin of the leads being imported. Defaults to <see cref="F:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.LeadOrigin.Other"/> if not specified.</param>
             <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/> containing a <see cref="T:LeadSoft.Common.GlobalDomain.DTOs.DTOBoolResponse"/> indicating the success of the
             import operation.</returns>
@@ -121,6 +122,31 @@
             <param name="messages"></param>
             <param name="logger"></param>
         </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.MessagesController.GetMessagesAsync(LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.LeadOrigin,LeadSoft.Common.GlobalDomain.DTOs.DTOPagedRequest)">
+            <summary>
+            Retrieves a list of messages based on the specified lead origin and pagination parameters, and returns them
+            as an HTML string.
+            </summary>
+            <remarks>The method returns an HTML content type response. Ensure that the pagination
+            parameters are valid to avoid exceptions.</remarks>
+            <param name="leadOrigin">The origin of the leads for which messages are to be retrieved. This parameter determines the source context
+            of the messages.</param>
+            <param name="dtoPage">The pagination parameters that specify the page number and size for the message retrieval. This helps in
+            fetching a specific subset of messages.</param>
+            <returns>An HTML string representing the list of messages formatted according to the specified lead origin and
+            pagination parameters.</returns>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Controllers.MessagesController.PostMessageTemplateAsync(LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageTemplateInsert)">
+            <summary>
+            Creates a new message template using the specified data.
+            </summary>
+            <remarks>This method handles HTTP POST requests to create a new message template. It returns a
+            200 OK response with a <see cref="T:LeadSoft.Common.GlobalDomain.DTOs.DTOBoolResponse"/> if the template is created successfully, or a 400 Bad
+            Request if the input data is invalid.</remarks>
+            <param name="dtoInsert">The data transfer object containing the details of the message template to be created. Cannot be null.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains a <see cref="T:LeadSoft.Common.GlobalDomain.DTOs.DTOBoolResponse"/>
+            indicating the success of the operation.</returns>
+        </member>
         <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse.ToHtml(System.Collections.Generic.IEnumerable{LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse},LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse.HtmlRenderOptions)">
             <summary>
             Converte uma lista de DtoMessageResponse em um HTML completo (doctype+head+body).
@@ -132,6 +158,27 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "M:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse.EncodeParagraphs(System.String,System.Text.Encodings.Web.HtmlEncoder)" -->
+        <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageTemplateInsert">
+            <summary>
+            Represents a data transfer object for inserting a message template.
+            </summary>
+            <remarks>This class is used to define the structure of a message template that can be personalized
+            with specific placeholders. It includes properties for specifying the destination based on the lead's origin and
+            the text content of the message template.</remarks>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageTemplateInsert.Destination">
+            <summary>
+            Gets or sets the destination message based on origin List of the lead.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageTemplateInsert.Text">
+            <summary>
+            Gets or sets the text content of the message template.
+            </summary>
+            <remarks>The text is required and must not exceed 4000 characters. It is intended to be used
+            as a template for personalized messages, with placeholders such as {FirstName}, {Industry}, {Company}, and
+            {YourName} that can be replaced with actual values.</remarks>
+        </member>
         <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge">
             <summary>
             Represents a set of instructions for generating AI field values based on specific criteria.
