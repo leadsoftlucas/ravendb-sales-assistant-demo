@@ -7,7 +7,16 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+#region [ RavenDB Configuration and AI parameters set ]
+
 builder.Services.AddRavenDB(builder.Configuration);
+await builder.Services.SetRavenDB_StaticIndexsAsync();
+builder.Services.SetRavenDBOpenAIGenerativeConnectionString();
+builder.Services.SetRavenDBAITask_LeadKnowledge();
+builder.Services.SetRavenDBAITask_CreateMessages();
+
+#endregion
+
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

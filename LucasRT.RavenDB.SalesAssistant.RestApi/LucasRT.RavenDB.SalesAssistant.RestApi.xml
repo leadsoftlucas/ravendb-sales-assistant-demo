@@ -4,6 +4,55 @@
         <name>LucasRT.RavenDB.SalesAssistant.RestApi</name>
     </assembly>
     <members>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Configurations.RavenDBConfiguration.SetRavenDB_StaticIndexsAsync(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Deploys static indexes to the RavenDB document store asynchronously.
+            </summary>
+            <remarks>This method retrieves the <see cref="T:Raven.Client.Documents.IDocumentStore"/> from the provided <paramref
+            name="service"/> collection and deploys a predefined list of static indexes to it. Ensure that the RavenDB
+            document store is properly configured in the service collection before calling this method.</remarks>
+            <param name="service">The service collection used to retrieve the RavenDB document store.</param>
+            <returns></returns>
+            <exception cref="T:System.OperationCanceledException">Thrown if the RavenDB document store is not found in the service collection.</exception>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Configurations.RavenDBConfiguration.SetRavenDBOpenAIGenerativeConnectionString(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures the OpenAI connection string for the RavenDB document store within the specified service
+            collection.
+            </summary>
+            <remarks>This method retrieves the RavenDB document store from the service collection and
+            checks if the OpenAI connection string is already configured. If not, it creates and adds a new OpenAI
+            connection string using environment variables for the API key, endpoint, and model. This operation is
+            performed asynchronously.</remarks>
+            <param name="service">The service collection to configure with the OpenAI connection string.</param>
+            <returns></returns>
+            <exception cref="T:System.OperationCanceledException">Thrown if the RavenDB document store is not found in the service collection.</exception>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Configurations.RavenDBConfiguration.SetRavenDBAITask_LeadKnowledge(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures and registers a RavenDB AI task for lead knowledge processing within the specified service
+            collection.
+            </summary>
+            <remarks>This method sets up a RavenDB AI task named "LeadKnowledge" if it is not already
+            configured. It requires a valid RavenDB document store and AI connection string to be present in the service
+            collection. The task analyzes lead data to extract insights based on specified rules and
+            transformations.</remarks>
+            <param name="service">The service collection to which the RavenDB AI task is added.</param>
+            <exception cref="T:System.OperationCanceledException">Thrown if the RavenDB document store or the required AI connection string is not found in the service
+            collection.</exception>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Configurations.RavenDBConfiguration.SetRavenDBAITask_CreateMessages(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures a RavenDB AI task for creating messages within the service collection.
+            </summary>
+            <remarks>This method sets up a RavenDB AI task named <c>CreateMessages</c> if it does not
+            already exist. It requires a valid RavenDB document store and AI connection string to be present in the
+            service collection. If the necessary RavenDB components are not found, an <see
+            cref="T:System.OperationCanceledException"/> is thrown.</remarks>
+            <param name="service">The service collection to which the RavenDB AI task is added.</param>
+            <exception cref="T:System.OperationCanceledException">Thrown if the RavenDB document store or the required AI connection string is not found in the service
+            collection.</exception>
+        </member>
         <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Configurations.SwaggerConfiguration">
             <summary>
             Provides extension methods for configuring Swagger in an ASP.NET Core application.
@@ -83,5 +132,180 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "M:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages.DtoMessageResponse.EncodeParagraphs(System.String,System.Text.Encodings.Web.HtmlEncoder)" -->
+        <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge">
+            <summary>
+            Represents a set of instructions for generating AI field values based on specific criteria.
+            </summary>
+            <remarks>The <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge"/> class provides properties to define guidelines for populating
+            AI fields, including names, email addresses, company identification, and language specifications.</remarks>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge.Company">
+            <summary>
+            Gets the name of the company associated with the entity.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge.FriendlyName">
+            <summary>
+            Gets the user-friendly name associated with the object.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge.PersonalEmails">
+            <summary>
+            Gets the personal email addresses associated with the user.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge.ProfessionalEmail">
+            <summary>
+            Gets the professional email address associated with the user.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge.SpokenLanguage">
+            <summary>
+            Gets the spoken language associated with the entity.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge.VoiceTarget">
+            <summary>
+            Gets the target voice identifier for the current operation.
+            </summary>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge.GetAIFieldsInstructions">
+            <summary>
+            Provides instructions for generating AI field values based on specific criteria.
+            </summary>
+            <remarks>This method returns an <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge"/> object with predefined instructions
+            for each field: <list type="bullet"> <item> <description> <strong>FriendlyName:</strong> Use only the first
+            and main composed names, avoiding surnames. </description> </item> <item> <description>
+            <strong>VoiceTarget:</strong> Generate a writing target instruction based on age and gender, if available.
+            Use a neutral professional approach if this information is not provided. </description> </item> <item>
+            <description> <strong>PersonalEmails:</strong> Include the best personal generic emails, separated by
+            semicolons. Avoid professional emails or those not belonging to the person. </description> </item> <item>
+            <description> <strong>ProfessionalEmail:</strong> Include a professional or student email associated with a
+            company domain. If the domain suggests a company or university, use it; otherwise, leave it blank.
+            </description> </item> <item> <description> <strong>Company:</strong> Derive the company name from the
+            professional email domain. Use "Student" for university domains, or leave blank if indeterminate.
+            </description> </item> <item> <description> <strong>SpokenLanguage:</strong> Specify the spoken language and
+            cultural context. </description> </item> </list></remarks>
+            <returns>An <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.AiKnowledge"/> object containing detailed instructions for populating AI fields, including
+            guidelines for names, email addresses, company identification, and language specifications.</returns>
+        </member>
+        <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Indexes.Index_LeadsMessages">
+            <summary>
+            Represents an index creation task for the "LeadsMessages" index in a RavenDB database.
+            </summary>
+            <remarks>This class defines the mapping and reducing logic for indexing lead messages. It maps
+            documents from the "Leads" collection, associates them with their corresponding templates, and groups the
+            results by lead ID.</remarks>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Indexes.Index_LeadsMessages.IndexName">
+            <summary>
+            Gets the name of the index used for storing lead messages.
+            </summary>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads.Indexes.Index_LeadsMessages.CreateIndexDefinition">
+            <summary>
+            Creates an index definition for processing lead documents with associated templates.
+            </summary>
+            <remarks>This method constructs an index definition that maps lead documents to a structure
+            containing lead information and associated template details. The index uses a reduce function to group
+            results by lead ID, ensuring that each lead's data is aggregated correctly. The output is reduced to a
+            collection named after the plural form of the <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message"/> class.</remarks>
+            <returns>An <see cref="T:Raven.Client.Documents.Indexes.IndexDefinition"/> object configured to index lead documents with template associations, using
+            Lucene as the search engine.</returns>
+        </member>
+        <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions">
+            <summary>
+            Provides AI-generated email suggestions tailored for both professional and personal contexts.
+            </summary>
+            <remarks>This class offers properties to hold email recipients, subject, and body content for both
+            professional and personal emails. The suggestions are designed to assist in formatting and translating email
+            content based on the context and presence of email addresses.</remarks>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions.ProfessionalRecipients">
+            <summary>
+            Gets the list of professional recipients.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions.ProfessionalSubject">
+            <summary>
+            Gets the professional subject associated with the entity.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions.ProfessionalBody">
+            <summary>
+            Gets the name of the professional body associated with the entity.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions.PersonalRecipients">
+            <summary>
+            Gets the list of personal recipients.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions.PersonalSubject">
+            <summary>
+            Gets the personal subject associated with the current instance.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions.PersonalBody">
+            <summary>
+            Gets the personal body text associated with the entity.
+            </summary>
+        </member>
+        <member name="M:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions.GetAIFieldsInstructions">
+            <summary>
+            Generates AI email suggestions for both professional and personal contexts.
+            </summary>
+            <returns>An <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.AIEmailSuggestions"/> object containing instructions for generating email recipients,  body,
+            and subject for both professional and personal emails. The instructions specify how to format  and translate
+            the email content based on the presence of email addresses and the context of the message.</returns>
+        </member>
+        <member name="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message">
+            <summary>
+            Represents an Artificial Document message with associated metadata and content.
+            </summary>
+            <remarks>
+            This class is generated automatically by Leads Index, what makes it an artificial collection, linked directly to a Lead.
+            The <see cref="T:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message"/> class encapsulates information about a message, including its unique identifier, the lead it is associated with, its origin, and any AI-generated content or suggestions.
+            
+            Basic, it's a readonly collection that holds the AI generated content for a Lead, based on its Template and AiKnowledge properties. No need to create or update it manually.
+            </remarks>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message.Id">
+            <summary>
+            Gets or sets the unique identifier for the entity.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message.LeadId">
+            <summary>
+            Gets or sets the unique identifier for a lead.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message.Origin">
+            <summary>
+            Gets or sets the origin of the lead.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message.AiKnowledge">
+            <summary>
+            Gets or sets the AI knowledge configuration for the system.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message.Template">
+            <summary>
+            Gets or sets the template used for generating documents.
+            </summary>
+        </member>
+        <member name="P:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Message.AIEmailSuggestions">
+            <summary>
+            Gets or sets the AI-generated email suggestions.
+            </summary>
+        </member>
+        <member name="F:LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Messages.Template.SampleTemplate">
+            <summary>
+            Represents a sample template for generating personalized messages.
+            </summary>
+            <remarks>This template is designed to be used for creating messages that include placeholders
+            for  personalizing content, such as the recipient's first name, industry, and company.</remarks>
+        </member>
     </members>
 </doc>

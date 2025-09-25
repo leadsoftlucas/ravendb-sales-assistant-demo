@@ -416,3 +416,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/LucasRT.RavenDB.SalesAssistant.Tests/Certificates/LucasSales.pfx
+/LucasRT.RavenDB.SalesAssistant.RestApi/Certificates/LucasSales.pfx
