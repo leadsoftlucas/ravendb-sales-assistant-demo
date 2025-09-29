@@ -15,14 +15,14 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Application.Services.Messages
             IAsyncDocumentSession session = ravenDB.OpenAsyncSession();
 
             int currentPage = Math.Abs(dtoPage.CurrentPage);
-            if (currentPage == 0)
-                currentPage = 1;
+            if (currentPage == 1)
+                currentPage = 0;
 
             IList<Message> messages = await session.Query<Message>()
                                                    .Include(m => m.LeadId)
                                                    .Where(m => m.Origin == leadOrigin && m.AIEmailSuggestions != null)
                                                    .OrderBy(m => m.AiKnowledge.FriendlyName)
-                                                   .Skip(dtoPage.CurrentPage * dtoPage.PageSize)
+                                                   .Skip(currentPage * dtoPage.PageSize)
                                                    .Take(dtoPage.PageSize)
                                                    .ToListAsync();
 
