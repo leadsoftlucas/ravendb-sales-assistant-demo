@@ -8,7 +8,7 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
         public string Id { get; set; } = null;
         public string TemplateId { get; set; } = string.Empty;
         public LeadOrigin Origin { get; set; } = LeadOrigin.Other;
-        public CultureName CultureName { get; set; } = CultureName.pt_BR;
+        public string CultureName { get; set; } = "pt-BR";
         public string Name { get; set; } = string.Empty;
         public string Company { get; set; } = string.Empty;
         public Emails Emails { get; set; } = new();
@@ -28,7 +28,7 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads
 
         public Lead SetCulture(CultureName cultureName)
         {
-            CultureName = cultureName;
+            CultureName = cultureName.GetDescription();
             return this;
         }
     }

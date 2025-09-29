@@ -222,8 +222,8 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Configurations
                         })
                     "
                 },
-                Prompt = @"You are an experienced Account Executive and received the leads enriched from your SDR with a suggested e-mail template.
-                           Use the Lead information to refine and do small adjustments to personificate the template to the e-mail you'll send them.
+                Prompt = @"Your name is Lucas Tavares, you are a solution architect on RavenDB and you are working as an experienced Account Executive and received the leads enriched from your SDR with a suggested e-mail template to introduce yourself and get their attention. Be creative and markety, but also human and act natural.
+                           Use the Lead information to refine and do small adjustments to personificate the template to the e-mail you'll send them. Do not lose contextual information that would help lead to recognize Lucas.
                            Depending on Lead's information, you'll have professional and/or personal contexts to work on, maybe one of them won't exist and that's ok.
                            The e-mail body should be written on lead's language, culture and fit the voice target.".Trim(),
 

@@ -1,7 +1,6 @@
 ﻿using LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Entities.Leads;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
-using static LeadSoft.Common.Library.Enumerators.Enums;
 
 namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages
 {
@@ -22,7 +21,7 @@ namespace LucasRT.RavenDB.SalesAssistant.RestApi.Domain.Contracts.Messages
         public LeadOrigin LeadOrigin { get; set; }
 
         [DataMember]
-        public CultureName CultureName { get; set; }
+        public string CultureName { get; set; }
 
         [DataMember]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
